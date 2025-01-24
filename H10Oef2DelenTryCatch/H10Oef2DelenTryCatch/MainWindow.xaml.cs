@@ -20,5 +20,30 @@ namespace H10Oef2DelenTryCatch
         {
             InitializeComponent();
         }
+
+        private void calculateButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                double number = double.Parse(numberTextBox.Text);
+                double divider = double.Parse(dividerTextBox.Text);
+
+                resultTextBox.Text = (number / divider).ToString();
+            }
+            catch (DivideByZeroException)
+            {
+                MessageBox.Show("Delen door 0 mag niet!");
+                dividerTextBox.Focus();
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Je moet 2 getallen ingeven!");
+                numberTextBox.Focus();
+            }
+            catch (Exception ex)
+            { 
+                MessageBox.Show($"{ex.Message}");
+            }
+        }
     }
 }
